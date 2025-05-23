@@ -1,6 +1,6 @@
 # prod
 dist/
-
+package-lock.json
 # dev
 .yarn/
 !.yarn/releases
