@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client/edge";
 import { withAccelerate } from "@prisma/extension-accelerate";
 import { Hono } from "hono";
 import { verify } from "hono/jwt";
-
+import { createBlogInput,updateBlogInput } from "@harshchh/medium-common";
 export const blogRouter = new Hono<{
     Bindings: {
         DATABASE_URL: string;
@@ -37,7 +37,11 @@ blogRouter.use('/*', async (c, next) => {
 blogRouter.post('/post', async (c) => {
     const body = await c.req.json();
     const authorId = c.get('userId');
-    
+    const {success} = createBlogInput.safeParse(body);
+    if(!success){
+        c.status(411);
+        return c.json({msg:"Invalid inputs, z validation faield"});
+    }
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
@@ -55,6 +59,11 @@ blogRouter.post('/post', async (c) => {
 
 blogRouter.put('/post', async (c) => {
     const body = await c.req.json();
+    const {success} = updateBlogInput.safeParse(body);
+    if(!success){
+        c.status(411);
+        return c.json({msg:"Inputs invalid, z validation failed."});
+    }
     const prisma = new PrismaClient({
         datasourceUrl: c.env.DATABASE_URL,
     }).$extends(withAccelerate());
