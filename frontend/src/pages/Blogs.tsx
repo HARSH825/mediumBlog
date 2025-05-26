@@ -1,10 +1,17 @@
+import { useState } from "react";
 import { Appbar } from "../components/Appbar"
 import { BlogCard } from "../components/BlogCard"
 import { BlogSkeleton } from "../components/BlogsSkeleton";
 import { useBlogs } from "../hooks";
-
+import {format} from "date-fns"
 export const Blogs = () => {
     const { loading, blogs, error } = useBlogs();
+    const [currentPage,setCurrentPage] = useState(1);
+    const blogsPerPage = 8;
+
+    const idxOfLastBlog = currentPage*blogsPerPage;
+    const indexOfFirstBlog = idxOfLastBlog - blogsPerPage;
+    const currentBlogs = blogs.slice(indexOfFirstBlog, idxOfLastBlog);
 
     if (loading) {
         return (
@@ -53,19 +60,45 @@ export const Blogs = () => {
                             No blogs found
                         </div>
                     ) : (
-                        blogs.map((blog) => (
+                        currentBlogs.map((blog) => (
                             <BlogCard
                                 key={blog.id} 
                                 id={blog.id}
                                 authorName={blog.author?.name || "Anonymous"}
                                 title={blog.title}
                                 content={blog.content}
-                                publishedDate={"24th April 2025"}
+                                publishedDate={
+                                blog.publishedDate
+                                ? format(new Date(blog.publishedDate), "dd MMM yyyy, hh:mm a")
+                                : "Unknown"
+                                }
                             />
                         ))
                     )}
                 </div>
             </div>
+                            <div className="flex justify-center mt-6 gap-4">
+                <button
+                    onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+                    disabled={currentPage === 1}
+                    className="px-4 py-2 bg-black text-white rounded disabled:opacity-50"
+                >
+                    Previous
+                </button>
+                <span className="text-gray-600 pt-2">Page {currentPage}</span>
+                <button
+                    onClick={() =>
+                    setCurrentPage((prev) =>
+                        prev < Math.ceil(blogs.length / blogsPerPage) ? prev + 1 : prev
+                    )
+                    }
+                    disabled={currentPage >= Math.ceil(blogs.length / blogsPerPage)}
+                    className="px-4 py-2 bg-black text-white rounded disabled:opacity-50"
+                >
+                    Next
+                </button>
+                </div>
+
         </div>
     );
 }

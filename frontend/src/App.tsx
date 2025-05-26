@@ -6,6 +6,7 @@ import { Blog } from './pages/Blog'
 import { Blogs } from './pages/Blogs'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { Publish } from './pages/Pulish'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path='/signup' element={<Signup/>} />
           <Route path='/blog/:id' element={<Blog/>} />
           <Route path='/blogs' element={<Blogs/>}/>
+          <Route path='/publish' element={<Publish/>}/>
         </Routes>
         
         <ToastContainer
