@@ -1,70 +1,78 @@
-# Medium Blog Clone
+# 📰 Medium Blog Clone  
 
-A full-stack blogging platform inspired by Medium, built with modern web technologies. Live Link : `[Medium]https://medium-blog-topaz-six.vercel.app/`
+A full-stack blogging platform inspired by [Medium](https://medium.com), built with modern web technologies.  
+**🔗 Live Demo:** [medium-blog-topaz-six.vercel.app](https://medium-blog-topaz-six.vercel.app/)
+
+---
 
 ## 🚀 Tech Stack
 
-### Frontend
-- **React** - UI library
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Styling
-- **date-fns** - Date formatting
+### 🖥 Frontend
+- **React** – UI library  
+- **TypeScript** – Type safety  
+- **Tailwind CSS** – Utility-first styling  
+- **date-fns** – Date formatting  
 
-### Backend
-- **Cloudflare Workers** - Serverless platform
-- **Hono** - Lightweight web framework
-- **Prisma** - ORM with Edge runtime
-- **PostgreSQL** - Database
-- **JWT** - Authentication
-- **Zod** - Input validation
+### ⚙️ Backend
+- **Cloudflare Workers** – Serverless deployment  
+- **Hono** – Lightweight web framework  
+- **Prisma** – ORM with Edge runtime support  
+- **PostgreSQL** – Relational database  
+- **JWT** – Secure authentication  
+- **Zod** – Schema-based validation  
 
-### Common
-- Shared TypeScript types and validations
-- Custom NPM package (`[@harshchh/medium-common](https://www.npmjs.com/package/@harshchh/medium-common)`)
+### 🌐 Common
+- Shared TypeScript types and validations  
+- Custom NPM package: [`@harshchh/medium-common`](https://www.npmjs.com/package/@harshchh/medium-common)  
+
+---
 
 ## ✨ Features
+- 🔐 User authentication (Sign Up / Sign In)  
+- 📝 Create and publish blog posts  
+- 📚 Browse all published blogs  
+- 👤 Author profiles  
+- 📱 Fully responsive design  
+- ⚡ Lightning-fast edge computing  
+- 🌍 Globally distributed via Cloudflare  
 
-- 🔐 User authentication (signup/signin)
-- 📝 Create and publish blog posts
-- 📚 View all published blogs
-- 👤 Author profiles
-- 📱 Responsive design
-- ⚡ Fast edge computing
-- 🌐 Global distribution via Cloudflare
+---
 
-## 🛠️ Installation
+## 🛠️ Installation & Setup
 
-1. Clone the repository:
-````markdown
-git clone <repository-url>
+```bash
+# Clone the repository
+git clone https://github.com/HARSH825/mediumBlog.git
 
-# Frontend
+# Frontend setup
 cd mediumBlog/frontend
 npm install
 
-# Backend
-cd mediumBlog/backend
+# Backend setup
+cd ../backend
 npm install
 
-# Backend (.env)
+# Setup environment variables (backend/.env)
 DATABASE_URL=your_prisma_database_url
 JWT_SECRET=your_jwt_secret
 
-# Frontend (src/config.ts)
+# Set frontend config (frontend/src/config.ts)
 BACKEND_URL=your_backend_url
 
-cd frontend
+# Run the apps
+cd ../frontend
 npm run dev
 
-cd backend
+cd ../backend
 npm run dev
-
-````
+```
 📁 Project Structure
+```
 mediumBlog/
-├── frontend/          # React frontend
-├── backend/           # Cloudflare Workers backend
-└── common/           # Shared types and validations
-
+├── frontend/    # React frontend (UI)
+├── backend/     # Cloudflare Workers backend (API)
+└── common/      # Shared types and validations (npm package)
+```
 🤝 Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome!
+For major changes, please open an issue first to discuss what you’d like to change.
